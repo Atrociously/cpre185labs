@@ -23,5 +23,6 @@ def main():
 
     doc.save(outfile)
 
+            rc = page.insert_text(start, code, fontsize = 8)
 if __name__ == "__main__":
     main()
