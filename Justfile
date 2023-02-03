@@ -38,19 +38,3 @@ zip labdir:
     mkdir -p "{{SUBMISSION_DIR}}/{{labdir}}"
     rm -f "${OUTPUT}"
     zip -r "${OUTPUT}" "{{labdir}}"
-
-write labdir:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    OUTPUT="{{SUBMISSION_DIR}}/{{labdir}}/{{FIRST_NAME}}_{{LAST_NAME}}_{{labdir}}.docx"
-
-    mkdir -p "{{SUBMISSION_DIR}}/{{labdir}}"
-    sh -c "{{PY}} {{PY_MAIN}} ${OUTPUT} {{labdir}}"
-
-prepare labdir:
-    #!/usr/bin/env bash
-
-    set -euo pipefail
-    just zip {{labdir}}
-    just write {{labdir}}

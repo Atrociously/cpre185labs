@@ -18,15 +18,14 @@
 int main(int argc, char *argv[])
 {
     double a, b, c;
-    double filler;
 
-    /* Put your code after this line */
+    printf("Enter a: ");
+    scanf("%lf", &a);
+    printf("Enter b: ");
+    scanf("%lf", &b);
 
+    c = sqrt(pow(a, 2) + pow(b, 2));
 
-
-    /* This next line will calculate the square root of whatever value is
-     * inside the parenthesis and assigns it to the variable filler. */
-    filler = sqrt();
-
+    printf("Value of c: %lf\n", c);
     return 0;
 }

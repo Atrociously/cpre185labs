@@ -17,5 +17,8 @@
 -----------------------------------------------------------------------------*/
 int main(int argc, char *argv[])
 {
+    printf("Name: Jack Morrison\n");
+    printf("Course: CPRE185\n");
+    printf("Date: 02/03/2023\n");
     return 0;
 }
