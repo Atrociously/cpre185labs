@@ -81,6 +81,6 @@ int seconds(int millis) {
 }
 
 int milliseconds(int millis) {
-	return millis - (seconds(millis) * 1000);
+	return millis - (minutes(millis) * 60 * 1000) - (seconds(millis) * 1000);
 }
 
