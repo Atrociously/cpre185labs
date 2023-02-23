@@ -5,7 +5,7 @@ void how_many_whole_digits(int number);
 int main(int argc, char *argv[]) {
     int input;
 
-    printf("Pleas input an integer from 1 up to 10000000: ");
+    printf("Please input an integer from 1 up to 10000000: ");
     scanf("%d", &input);
 
     if (input > 10000000 || input < 1) {
