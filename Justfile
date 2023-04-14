@@ -25,7 +25,7 @@ run buildfile *args:
 
     mkdir -p "{{justfile_directory()}}/target"
     OUTNAME=$(basename {{buildfile}} .c)
-    gcc -o "{{justfile_directory()}}/target/${OUTNAME}" "{{buildfile}}" -lm
+    gcc -g -o "{{justfile_directory()}}/target/${OUTNAME}" "{{buildfile}}" -lm
     sh -c "{{justfile_directory()}}/target/${OUTNAME}" {{args}}
 
 # zip up the lab folder

@@ -1,0 +1,3 @@
+run *args:
+    gcc -g -o ../target/lab08-main main.c game.c gameutil.c -Wall -Werror -lncurses -L .
+    sh -c "../target/lab08-main {{args}}"
