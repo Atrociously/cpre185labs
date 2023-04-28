@@ -1,6 +1,6 @@
 use std::{io, time::Duration};
 
-use dshock_rs::{Controller, SenseUsbMode, DS5_PID, SONY_VID, DPad};
+use dshock_rs::{Controller, UsbMode, DS5_PID, SONY_VID, DPad, DS4_PID};
 use ncurses::*;
 
 const CURSOR: char = '*';
@@ -22,7 +22,7 @@ fn draw_wordlist(wl: &[Vec<String>]) {
     let mut offset = 0;
     for row in wl {
         for (i, col) in row.iter().enumerate() {
-            mvprintw(i as i32, offset, col);
+            mvaddstr(i as i32, offset, col);
         }
         offset += COL_WIDTH;
     }
@@ -32,7 +32,7 @@ fn main() {
     // change the PID from ds5 to ds4 to get this to work with a dualshock instead
     // of a dualsense controller. I tested this with the ps5 controller because thats
     // what I had available at my home
-    let controller = Controller::new(SenseUsbMode, SONY_VID, DS5_PID).unwrap();
+    let controller = Controller::new(UsbMode, SONY_VID, DS4_PID).unwrap();
 
     initscr();
     noecho();
@@ -108,6 +108,7 @@ fn main() {
         // erase previous cursor and draw new cursor
         draw_ch(previous.0 * UCOL_WIDTH + previous_val.len() + 1, previous.1, ' ');
         draw_ch(cursor.0 * UCOL_WIDTH + cursor_val.len() + 1, cursor.1, CURSOR);
+        draw_wordlist(&wordlist);
 
         // draw sentence
         mv(bottom as i32, 0);

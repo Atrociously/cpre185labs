@@ -25,8 +25,7 @@ impl Mode for Usb {
         state.stick_right.y = packet[4];
         
         state.buttons = Buttons(packet[5] >> 4);
-        state.direction = DPad::from(packet[9]);
-        state.triggers = Triggers::from(packet[10]);
+        state.direction = DPad::from(packet[5]);
     }
 }
 
