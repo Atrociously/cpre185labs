@@ -42,28 +42,35 @@ GameState* game_init(Options opts) {
 }
 
 void game_update(GameState* g, Input input) {
+    // begin move
     Point player_next = g->player.pos;
 
+    // check inputs for left or right movement
     if (input.gyro.x < -0.2) {
         // move left
+        // check if left movement is possible
         if (g->maze[player_next.y][player_next.x-1] != WALL && player_next.x-1 != (size_t)-1) {
             player_next.x -= 1;
         }
     } else if (input.gyro.x > 0.2) {
         // move right
+        // check if right movement is possible
         if (player_next.x+1 < g->data.max_cols && g->maze[player_next.y][player_next.x+1] != WALL) {
             player_next.x += 1;
         }
     }
 
+    // try to move the player downwards / fall
     if (player_next.y+1 < g->data.max_rows && g->maze[player_next.y+1][player_next.x] != WALL ) {
         player_next.y += 1;
     }
     g->player.pos = player_next;
+
+    // see the rust code for win state, lose state, and controller usage
 }
 
 void game_draw(GameState* g) {
-    // draw maze
+    // draw maze this erases the previous player
     for (size_t row = 0; row < g->data.max_rows; row++) {
         for (size_t col = 0; col < g->data.max_cols; col++) {
             // don't draw over the player
